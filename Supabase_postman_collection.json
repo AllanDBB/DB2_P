@@ -1,0 +1,926 @@
+{
+	"info": {
+		"_postman_id": "supabase-ventas-backend-complete",
+		"name": "Supabase Backend Ventas - FALTA LO EXTRA OBLIGATORIO",
+		"description": "Colección COMPLETA para el laboratorio - incluye todo lo que falta en la versión básica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": " Authentication",
+			"item": [
+				{
+					"name": "Login Usuario 1 (CR + Electronics)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (responseCode.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"JWT\", jsonData.access_token);",
+									"    pm.environment.set(\"USER_ID\", jsonData.user.id);",
+									"    console.log(\"Token guardado: \" + jsonData.access_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"usuario1@test.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/auth/v1/token?grant_type=password",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"v1",
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "password"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Login Usuario 2 (US + Furniture)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (responseCode.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"JWT\", jsonData.access_token);",
+									"    pm.environment.set(\"USER_ID\", jsonData.user.id);",
+									"    console.log(\"Token guardado: \" + jsonData.access_token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"usuario2@test.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/auth/v1/token?grant_type=password",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"v1",
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "password"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": " Views de Reporte (EXTRAS OBLIGATORIOS)",
+			"item": [
+				{
+					"name": "GET Sales Fact View",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/v_sales_fact?select=*",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"v_sales_fact"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET Sales by Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/v_sales_by_category?select=*",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"v_sales_by_category"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET Sales by Country (CR only)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/v_sales_by_country?select=*&country_code=eq.CR",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"v_sales_by_country"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*"
+								},
+								{
+									"key": "country_code",
+									"value": "eq.CR"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET Top Products (30 days)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/v_top_products_30d?select=*&limit=10",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"v_top_products_30d"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": " Authorization Tables (Para verificar RLS)",
+			"item": [
+				{
+					"name": "GET My Allowed Countries",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/user_allowed_country?select=*,countries(*)&user_id=eq.{{USER_ID}}",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"user_allowed_country"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*,countries(*)"
+								},
+								{
+									"key": "user_id",
+									"value": "eq.{{USER_ID}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET My Allowed Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/user_allowed_category?select=*,categories(*)&user_id=eq.{{USER_ID}}",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"user_allowed_category"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*,categories(*)"
+								},
+								{
+									"key": "user_id",
+									"value": "eq.{{USER_ID}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET All User Permissions (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/user_allowed_country?select=*,countries(*)",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"user_allowed_country"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*,countries(*)"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": " Test RLS (Casos de prueba)",
+			"item": [
+				{
+					"name": "TEST - Try Create Product in Forbidden Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Forbidden Product\",\n  \"category_id\": 999,\n  \"unit_price\": 100.00\n}"
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/products",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"products"
+							]
+						}
+					}
+				},
+				{
+					"name": "TEST - Try Create Customer in Forbidden Country",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Forbidden Customer\",\n  \"email\": \"forbidden@test.com\",\n  \"country_code\": \"XX\"\n}"
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/customers",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"customers"
+							]
+						}
+					}
+				},
+				{
+					"name": "TEST - Try Update Product from Different Category",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"unit_price\": 1.00\n}"
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/products?id=eq.999",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"products"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "eq.999"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": " Admin Operations (Service Role)",
+			"item": [
+				{
+					"name": "ADMIN - Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/auth/v1/admin/users",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"v1",
+								"admin",
+								"users"
+							]
+						}
+					}
+				},
+				{
+					"name": "ADMIN - Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"usuario3@test.com\",\n  \"password\": \"password123\",\n  \"email_confirm\": true\n}"
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/auth/v1/admin/users",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"v1",
+								"admin",
+								"users"
+							]
+						}
+					}
+				},
+				{
+					"name": "ADMIN - Assign Country Permission",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"USER_UUID_HERE\",\n  \"country_code\": \"CR\"\n}"
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/user_allowed_country",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"user_allowed_country"
+							]
+						}
+					}
+				},
+				{
+					"name": "ADMIN - Assign Category Permission",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"USER_UUID_HERE\",\n  \"category_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/user_allowed_category",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"user_allowed_category"
+							]
+						}
+					}
+				},
+				{
+					"name": "ADMIN - Get All Data (Bypass RLS)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/customers?select=*",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "ADMIN - Delete User Permission",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/user_allowed_country?user_id=eq.USER_UUID_HERE",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"user_allowed_country"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "eq.USER_UUID_HERE"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": " Advanced Queries (Filtros y Búsquedas)",
+			"item": [
+				{
+					"name": "GET Products with Price Range",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/products?select=*,categories(*)&unit_price=gte.100&unit_price=lte.1000",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"products"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*,categories(*)"
+								},
+								{
+									"key": "unit_price",
+									"value": "gte.100"
+								},
+								{
+									"key": "unit_price",
+									"value": "lte.1000"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET Invoices This Month",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/invoices?select=*,customers(*)&invoice_date=gte.2024-12-01&order=invoice_date.desc",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"invoices"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*,customers(*)"
+								},
+								{
+									"key": "invoice_date",
+									"value": "gte.2024-12-01"
+								},
+								{
+									"key": "order",
+									"value": "invoice_date.desc"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET Customer Search by Name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/customers?select=*&name=ilike.*María*",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*"
+								},
+								{
+									"key": "name",
+									"value": "ilike.*María*"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET Invoice Lines with Total > 1000",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/invoice_lines?select=*,products(*),invoices(customers(*))&line_total=gte.1000",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"invoice_lines"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*,products(*),invoices(customers(*))"
+								},
+								{
+									"key": "line_total",
+									"value": "gte.1000"
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Auto-set base URL if not present",
+					"if (!pm.environment.get(\"SUPABASE_URL\")) {",
+					"    pm.environment.set(\"SUPABASE_URL\", \"https://roliajiiiipsxdpanyrl.supabase.co\");",
+					"}",
+					"",
+					"// Log current user for debugging",
+					"if (pm.environment.get(\"USER_ID\")) {",
+					"    console.log(\"Current User ID: \" + pm.environment.get(\"USER_ID\"));",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Log response for debugging",
+					"console.log(\"Status: \" + responseCode.code);",
+					"if (responseCode.code >= 400) {",
+					"    console.log(\"Error Response: \" + responseBody);",
+					"} else {",
+					"    console.log(\"Success!\");",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "SUPABASE_URL",
+			"value": "https://roliajiiiipsxdpanyrl.supabase.co",
+			"type": "string"
+		},
+		{
+			"key": "SUPABASE_KEY",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJvbGlhamlpaWlwc3hkcGFueXJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg4MzQ0MjgsImV4cCI6MjA3NDQxMDQyOH0.uw2hkNDCt36iYPFBUsUe1CrdiCuL7B5FPjt9ymB7cuQ",
+			"type": "string"
+		},
+		{
+			"key": "SERVICE_ROLE_KEY",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJvbGlhamlpaWlwc3hkcGFueXJsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1ODgzNDQyOCwiZXhwIjoyMDc0NDEwNDI4fQ.em8_9gu47jH7f8FqyjnybnCD41Y4y_vT33EMY-gMlQY",
+			"type": "string"
+		},
+		{
+			"key": "JWT",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "USER_ID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "LAST_INVOICE_ID",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
