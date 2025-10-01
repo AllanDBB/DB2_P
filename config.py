@@ -10,14 +10,19 @@ SERVICE_ROLE_KEY = DEFAULT_SERVICE_ROLE_KEY
 
 # Usuarios predefinidos
 USERS = {
-    "Usuario 1 (CR + Electronics)": {
-        "email": "usuario1@test.com",
+    "Usuario 1 - brianramirez0farias@gmail.com": {
+        "email": "brianramirez0farias@gmail.com",
         "password": "password123",
-        "description": "Costa Rica + Electronics"
+        "description": "Brian Ramirez"
     },
-    "Usuario 2 (US + Furniture)": {
-        "email": "usuario2@test.com", 
-        "password": "password123",
-        "description": "United States + Furniture"
+    "Usuario 2 - usertest@email.com": {
+        "email": "usertest@email.com", 
+        "password": "{Bases@1234}",
+        "description": "User Test"
+    },
+    "Usuario 3 - adbyb.es@gmail.com": {
+        "email": "adbyb.es@gmail.com",
+        "password": "{Dep@2022}",
+        "description": "ADBYB ES"
     }
 }
