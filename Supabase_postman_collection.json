@@ -118,6 +118,732 @@
 			]
 		},
 		{
+			"name": " Catalogs",
+			"item": [
+				{
+					"name": "GET All Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/categories?select=*",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "POST Create Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"New Category\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/categories",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"categories"
+							]
+						}
+					}
+				},
+				{
+					"name": "GET All Countries",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/countries?select=*",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"countries"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET All Products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/products?select=*,categories(*)",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"products"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*,categories(*)"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "POST Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"New Product\",\n  \"category_id\": 1,\n  \"unit_price\": 99.99\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/products",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"products"
+							]
+						}
+					}
+				},
+				{
+					"name": "PATCH Update Product",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"unit_price\": 149.99\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/products?id=eq.1",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"products"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "eq.1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "DELETE Product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/products?id=eq.999",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"products"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "eq.999"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET All Customers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/customers?select=*,countries(*)",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*,countries(*)"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "POST Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Juan Pérez\",\n  \"email\": \"juan@test.com\",\n  \"country_code\": \"CR\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/customers",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"customers"
+							]
+						}
+					}
+				},
+				{
+					"name": "PATCH Update Customer",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"newemail@test.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/customers?id=eq.1",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "eq.1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "DELETE Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/customers?id=eq.999",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "eq.999"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET All Invoices",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/invoices?select=*,customers(*)",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"invoices"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*,customers(*)"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "POST Create Invoice",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"customer_id\": 1,\n  \"total_amount\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/invoices?select=*",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"invoices"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "PATCH Update Invoice",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"total_amount\": 500.00\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/invoices?id=eq.1",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"invoices"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "eq.1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET All Invoice Lines",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/invoice_lines?select=*,products(*),invoices(*)",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"invoice_lines"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*,products(*),invoices(*)"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "POST Create Invoice Line",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"invoice_id\": 1,\n  \"product_id\": 1,\n  \"quantity\": 2,\n  \"unit_price\": 99.99,\n  \"line_total\": 199.98\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/invoice_lines?select=*",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"invoice_lines"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET Products by Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/products?select=*&category_id=eq.1",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"products"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*"
+								},
+								{
+									"key": "category_id",
+									"value": "eq.1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET Customers by Country",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/customers?select=*&country_code=eq.CR",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*"
+								},
+								{
+									"key": "country_code",
+									"value": "eq.CR"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET Invoice Lines with Products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/invoice_lines?select=*,products(*)",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"invoice_lines"
+							],
+							"query": [
+								{
+									"key": "select",
+									"value": "*,products(*)"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
 			"name": " Views de Reporte (EXTRAS OBLIGATORIOS)",
 			"item": [
 				{
@@ -131,7 +857,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{JWT}}"
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
 							}
 						],
 						"url": {
@@ -164,7 +890,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{JWT}}"
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
 							}
 						],
 						"url": {
@@ -197,7 +923,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{JWT}}"
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
 							}
 						],
 						"url": {
@@ -234,7 +960,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{JWT}}"
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
 							}
 						],
 						"url": {
@@ -276,7 +1002,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{JWT}}"
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
 							}
 						],
 						"url": {
@@ -313,7 +1039,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{JWT}}"
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
 							}
 						],
 						"url": {
@@ -388,7 +1114,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{JWT}}"
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
 							},
 							{
 								"key": "Content-Type",
@@ -423,7 +1149,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{JWT}}"
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
 							},
 							{
 								"key": "Content-Type",
@@ -458,7 +1184,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{JWT}}"
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
 							},
 							{
 								"key": "Content-Type",
@@ -709,7 +1435,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{JWT}}"
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
 							}
 						],
 						"url": {
@@ -750,7 +1476,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{JWT}}"
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
 							}
 						],
 						"url": {
@@ -791,7 +1517,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{JWT}}"
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
 							}
 						],
 						"url": {
@@ -828,7 +1554,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{JWT}}"
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
 							}
 						],
 						"url": {
@@ -850,6 +1576,110 @@
 									"key": "line_total",
 									"value": "gte.1000"
 								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": " RPC Functions (Para evitar RLS violations)",
+			"item": [
+				{
+					"name": "Create Invoice (RPC) - Success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (responseCode.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData && jsonData.length > 0) {",
+									"        pm.environment.set(\"LAST_INVOICE_ID\", jsonData[0].invoice_id);",
+									"        console.log(\"Invoice created with ID: \" + jsonData[0].invoice_id);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customer_id\": 36,\r\n  \"items\": [\r\n    {\r\n      \"product_id\": 44,\r\n      \"quantity\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/rpc/create_invoice",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"rpc",
+								"create_invoice"
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Invoice (RPC) - RLS Violation Test",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "apikey",
+								"value": "{{SUPABASE_KEY}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{SERVICE_ROLE_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customer_id\": 32,\r\n  \"items\": [\r\n    {\r\n      \"product_id\": 44,\r\n      \"quantity\": 1\r\n    },\r\n    {\r\n      \"product_id\": 50,\r\n      \"quantity\": 2\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SUPABASE_URL}}/rest/v1/rpc/create_invoice",
+							"host": [
+								"{{SUPABASE_URL}}"
+							],
+							"path": [
+								"rest",
+								"v1",
+								"rpc",
+								"create_invoice"
 							]
 						}
 					}
@@ -889,38 +1719,6 @@
 					"}"
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "SUPABASE_URL",
-			"value": "https://roliajiiiipsxdpanyrl.supabase.co",
-			"type": "string"
-		},
-		{
-			"key": "SUPABASE_KEY",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJvbGlhamlpaWlwc3hkcGFueXJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg4MzQ0MjgsImV4cCI6MjA3NDQxMDQyOH0.uw2hkNDCt36iYPFBUsUe1CrdiCuL7B5FPjt9ymB7cuQ",
-			"type": "string"
-		},
-		{
-			"key": "SERVICE_ROLE_KEY",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJvbGlhamlpaWlwc3hkcGFueXJsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1ODgzNDQyOCwiZXhwIjoyMDc0NDEwNDI4fQ.em8_9gu47jH7f8FqyjnybnCD41Y4y_vT33EMY-gMlQY",
-			"type": "string"
-		},
-		{
-			"key": "JWT",
-			"value": "",
-			"type": "string"
-		},
-		{
-			"key": "USER_ID",
-			"value": "",
-			"type": "string"
-		},
-		{
-			"key": "LAST_INVOICE_ID",
-			"value": "",
-			"type": "string"
 		}
 	]
 }
